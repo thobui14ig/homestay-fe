@@ -1,10 +1,11 @@
 import KeepAliveCustom from '../../../components/KeepAliveCustom'
-import CommentTiktok from './Comment'
+import Comment from '../../../components/Comment/Comment'
+import { CrawType } from '../../../shared/interfaces/link'
 
 function index() {
   return (
     <KeepAliveCustom>
-      <CommentTiktok />
+      <Comment crawType={CrawType.TIKTOK}/>
     </KeepAliveCustom>
   )
 }

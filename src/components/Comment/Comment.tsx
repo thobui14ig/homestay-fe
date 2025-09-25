@@ -7,13 +7,14 @@ import { Button, DatePicker, Form, Input } from 'antd';
 import dayjs from 'dayjs';
 import { MaterialReactTable, MRT_ColumnDef, useMaterialReactTable } from "material-react-table";
 import { useEffect, useMemo, useState } from "react";
-import { getComments, IGetCommentParams } from '../../../api/comment.api';
-import { useApp } from "../../../common/context/app.context";
-import { timeAgo } from '../../../common/utils/time';
-import Pagination from '../../../components/Pagination/Pagination';
-import { IComment } from '../../../shared/interfaces/comment';
+import { getComments, IGetCommentParams } from '../../api/comment.api';
+import { useApp } from "../../common/context/app.context";
+import { timeAgo } from '../../common/utils/time';
+import Pagination from '../Pagination/Pagination';
+import { IComment } from '../../shared/interfaces/comment';
+import { CrawType } from '../../shared/interfaces/link';
 
-function Comment() {
+function Comment({ crawType }: { crawType: CrawType }) {
   const [form] = Form.useForm<IGetCommentParams>()
   const initialValues: IGetCommentParams = {
     startDate: dayjs(),
@@ -239,7 +240,7 @@ function Comment() {
   }
 
   const callApi = async (values: any) => {
-    const { data } = await getComments({ ...values, limit: pageSize, offset: pageSize * (page ? page - 1 : 0)   })
+    const { data } = await getComments({ ...values, limit: pageSize, offset: pageSize * (page ? page - 1 : 0), crawType })
     setComments(data.data)
     setTotalCount(data.totalCount)
   }

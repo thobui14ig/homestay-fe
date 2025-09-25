@@ -1,5 +1,6 @@
 
 import { IComment } from '../shared/interfaces/comment'
+import { CrawType } from '../shared/interfaces/link'
 import http from './http'
 import dayjs from 'dayjs'
 
@@ -9,6 +10,7 @@ export interface IGetCommentParams {
     limit?: number
     offset?: number
     keyword?: string
+    crawType?: CrawType
 }
 
 export interface IGetCommentResponse {
